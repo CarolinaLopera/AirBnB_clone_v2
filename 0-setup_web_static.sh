@@ -42,3 +42,5 @@ echo "server {
 
        error_page 404 /404.html;
 }" > /etc/nginx/sites-enabled/default
+
+service nginx restart
