@@ -23,3 +23,22 @@ fi
 ln -sf /data/web_static/releases/test/ /data/web_static/current
 
 chown -R ubuntu:ubuntu /data/
+
+echo "server {
+       listen 80;
+       listen [::]:80;
+
+       root /var/www/html;
+       index index.html;
+
+       location /hbnb_static {
+           alias /data/web_static/current/;
+           index index.html;
+       }
+
+       location /redirect_me {
+           rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;
+       }
+
+       error_page 404 /404.html;
+}" > /etc/nginx/sites-enabled/default
